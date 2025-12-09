@@ -13,6 +13,9 @@
       position: relative;
       z-index: 2;
       padding: 4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
 
     .back-button {
@@ -41,13 +44,27 @@
     }
 
     .project-detail-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, rgba(51, 0, 102, 0.4) 0%, rgba(26, 0, 51, 0.6) 100%);
+      max-width: 650px;
+      width: 100%;
+      margin-right: 0;
+      margin-left: auto;
+      background: linear-gradient(135deg, rgba(51, 0, 102, 0.92) 0%, rgba(26, 0, 51, 0.95) 100%);
       border: 2px solid #ff00ff;
       padding: 3rem;
       clip-path: polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%);
       box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 1024px) {
+      .project-detail-container {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .project-page {
+        justify-content: center;
+      }
     }
 
     .project-title {
