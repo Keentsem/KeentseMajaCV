@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 
 // ========== PROJECTS BOARD SCENE SETUP ==========
 const projectsCanvas = document.getElementById('projects-canvas');
@@ -50,7 +50,11 @@ if (projectsCanvas) {
   // ========== LOAD PROJECTS BOARD MODEL ==========
   let projectsBoard = null;
   const loader = new GLTFLoader();
-  loader.setMeshoptDecoder(MeshoptDecoder);
+
+  // Setup Draco decoder for compressed models
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+  loader.setDRACOLoader(dracoLoader);
 
   loader.load(
     import.meta.env.BASE_URL + 'projects.glb',
