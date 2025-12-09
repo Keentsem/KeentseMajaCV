@@ -16,7 +16,7 @@ if (!fs.existsSync(targetDir)) {
   fs.mkdirSync(targetDir, { recursive: true });
 }
 
-// Move all HTML files
+// Move all HTML files and fix asset paths
 if (fs.existsSync(sourceDir)) {
   const files = fs.readdirSync(sourceDir);
 
@@ -25,8 +25,17 @@ if (fs.existsSync(sourceDir)) {
       const sourcePath = path.join(sourceDir, file);
       const targetPath = path.join(targetDir, file);
 
-      fs.copyFileSync(sourcePath, targetPath);
-      console.log(`✓ Moved ${file}`);
+      // Read the HTML file
+      let content = fs.readFileSync(sourcePath, 'utf8');
+
+      // Fix asset paths: change /KeentseMajaCV/ to ../KeentseMajaCV/
+      // This ensures that when pages are in /projects/, they can access assets in the root
+      content = content.replace(/href="\/KeentseMajaCV\//g, 'href="../');
+      content = content.replace(/src="\/KeentseMajaCV\//g, 'src="../');
+
+      // Write the modified content to the target
+      fs.writeFileSync(targetPath, content, 'utf8');
+      console.log(`✓ Moved and fixed paths in ${file}`);
     }
   });
 
