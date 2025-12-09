@@ -51,7 +51,7 @@ if (projectsCanvas) {
   const loader = new GLTFLoader();
 
   loader.load(
-    './projects.glb',
+    import.meta.env.BASE_URL + 'projects.glb',
     (gltf) => {
       projectsBoard = gltf.scene;
 
