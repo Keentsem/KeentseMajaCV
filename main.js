@@ -98,7 +98,7 @@ function findHeadBone(object) {
 }
 
 loader.load(
-  '/keentse.glb',
+  './keentse.glb',
   (gltf) => {
     model = gltf.scene;
 
