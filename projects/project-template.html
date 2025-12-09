@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Name | Keentse Maja</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .project-page {
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+      padding: 4rem 2rem;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      z-index: 100;
+      padding: 1rem 2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      background: rgba(26, 0, 51, 0.8);
+      border: 2px solid #ff00ff;
+      color: #ff00ff;
+      text-decoration: none;
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: rgba(0, 255, 255, 0.3);
+      border-color: #00ffff;
+      color: #00ffff;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+      transform: translateX(-5px);
+    }
+
+    .project-detail-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(51, 0, 102, 0.4) 0%, rgba(26, 0, 51, 0.6) 100%);
+      border: 2px solid #ff00ff;
+      padding: 3rem;
+      clip-path: polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%);
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+    }
+
+    .project-header {
+      margin-bottom: 3rem;
+    }
+
+    .project-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 2rem;
+      color: #ff00ff;
+      text-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+      margin-bottom: 1rem;
+    }
+
+    .project-mascot {
+      width: 200px;
+      height: 200px;
+      margin: 2rem auto;
+      border: 3px solid #00ffff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+    }
+
+    .project-info {
+      margin-bottom: 3rem;
+    }
+
+    .info-section {
+      margin-bottom: 2rem;
+    }
+
+    .info-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.9rem;
+      color: #00ffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-text {
+      font-family: 'VT323', monospace;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: #00ff88;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .tech-tag {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 0, 255, 0.2);
+      border: 1px solid #ff00ff;
+      color: #ff00ff;
+      font-family: 'VT323', monospace;
+      font-size: 1.1rem;
+      clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+    }
+
+    .screenshot-gallery {
+      margin-top: 3rem;
+    }
+
+    .gallery-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.2rem;
+      color: #00ffff;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .screenshot-item {
+      position: relative;
+      border: 2px solid #ff00ff;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .screenshot-item:hover {
+      border-color: #00ffff;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .screenshot-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 0.8rem;
+      font-family: 'VT323', monospace;
+      font-size: 1.1rem;
+      color: #00ff88;
+      text-align: center;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .screenshot-item:hover .screenshot-caption {
+      transform: translateY(0);
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(0, 255, 255, 0.2);
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      text-decoration: none;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+      transition: all 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background: rgba(255, 0, 255, 0.3);
+      border-color: #ff00ff;
+      color: #ff00ff;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+    }
+
+    .download-all-section {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(255, 0, 255, 0.3);
+    }
+
+    /* Lightbox for full-size viewing */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 3rem;
+      color: #ff00ff;
+      cursor: pointer;
+      font-family: 'Press Start 2P', monospace;
+      text-shadow: 0 0 20px rgba(255, 0, 255, 1);
+    }
+
+    .lightbox-close:hover {
+      color: #00ffff;
+      text-shadow: 0 0 30px rgba(0, 255, 255, 1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .project-title {
+        font-size: 1.2rem;
+      }
+
+      .project-detail-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .back-button {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="project-page">
+    <a href="../index.html#projects" class="back-button">← BACK</a>
+
+    <div class="project-detail-container">
+      <div class="project-header">
+        <h1 class="project-title">PROJECT NAME</h1>
+
+        <!-- Project Mascot/Logo -->
+        <img src="../images/projects/PROJECT_FOLDER/mascot.png" alt="Project Mascot" class="project-mascot">
+      </div>
+
+      <div class="project-info">
+        <div class="info-section">
+          <h3 class="info-label">DESCRIPTION</h3>
+          <p class="info-text">
+            Project description goes here...
+          </p>
+        </div>
+
+        <div class="info-section">
+          <h3 class="info-label">TECH STACK</h3>
+          <div class="tech-stack">
+            <span class="tech-tag">Technology 1</span>
+            <span class="tech-tag">Technology 2</span>
+            <span class="tech-tag">Technology 3</span>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h3 class="info-label">KEY FEATURES</h3>
+          <p class="info-text">
+            • Feature 1<br>
+            • Feature 2<br>
+            • Feature 3
+          </p>
+        </div>
+      </div>
+
+      <!-- Screenshot Gallery -->
+      <div class="screenshot-gallery">
+        <h2 class="gallery-title">[ SCREENSHOTS ]</h2>
+
+        <div class="gallery-grid">
+          <!-- Example screenshot items - duplicate and modify as needed -->
+          <div class="screenshot-item" onclick="openLightbox(this)">
+            <img src="../images/projects/PROJECT_FOLDER/screenshot1.png" alt="Screenshot 1">
+            <div class="screenshot-caption">
+              Screenshot 1: Main Interface
+              <br>
+              <a href="../images/projects/PROJECT_FOLDER/screenshot1.png" download class="download-btn" onclick="event.stopPropagation()">DOWNLOAD</a>
+            </div>
+          </div>
+
+          <div class="screenshot-item" onclick="openLightbox(this)">
+            <img src="../images/projects/PROJECT_FOLDER/screenshot2.png" alt="Screenshot 2">
+            <div class="screenshot-caption">
+              Screenshot 2: Feature Demo
+              <br>
+              <a href="../images/projects/PROJECT_FOLDER/screenshot2.png" download class="download-btn" onclick="event.stopPropagation()">DOWNLOAD</a>
+            </div>
+          </div>
+
+          <!-- Add more screenshots as needed -->
+        </div>
+
+        <div class="download-all-section">
+          <a href="#" class="download-btn" onclick="downloadAll(); return false;">DOWNLOAD ALL SCREENSHOTS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox for full-size image viewing -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Full size">
+    </div>
+  </div>
+
+  <script>
+    function openLightbox(element) {
+      const img = element.querySelector('img');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    function downloadAll() {
+      // Get all screenshot images
+      const screenshots = document.querySelectorAll('.screenshot-item img');
+
+      screenshots.forEach((img, index) => {
+        setTimeout(() => {
+          const link = document.createElement('a');
+          link.href = img.src;
+          link.download = `screenshot-${index + 1}.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }, index * 500); // Stagger downloads to avoid browser blocking
+      });
+
+      alert('Downloading all screenshots... Check your downloads folder!');
+    }
+
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
