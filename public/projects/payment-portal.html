@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Portal | Keentse Maja</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .project-page {
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+      padding: 4rem 2rem;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      z-index: 100;
+      padding: 1rem 2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      background: rgba(26, 0, 51, 0.8);
+      border: 2px solid #ff00ff;
+      color: #ff00ff;
+      text-decoration: none;
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: rgba(0, 255, 255, 0.3);
+      border-color: #00ffff;
+      color: #00ffff;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+      transform: translateX(-5px);
+    }
+
+    .project-detail-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(51, 0, 102, 0.4) 0%, rgba(26, 0, 51, 0.6) 100%);
+      border: 2px solid #ff00ff;
+      padding: 3rem;
+      clip-path: polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%);
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+    }
+
+    .project-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: #00ffff;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .project-subtitle {
+      font-family: 'VT323', monospace;
+      font-size: 1.5rem;
+      color: #ff00ff;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+    }
+
+    .project-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .project-section h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1rem;
+      color: #00ffff;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    }
+
+    .project-section p {
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: #00ff88;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+      margin-bottom: 1rem;
+    }
+
+    .project-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .project-section li {
+      font-family: 'VT323', monospace;
+      font-size: 1.3rem;
+      color: #00ff88;
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .project-section li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: #ff00ff;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .tech-tag {
+      padding: 0.6rem 1.2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      background: rgba(255, 0, 255, 0.2);
+      border: 2px solid #ff00ff;
+      color: #ff00ff;
+      clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+      box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    }
+
+    .tech-tag:hover {
+      background: rgba(0, 255, 255, 0.2);
+      border-color: #00ffff;
+      color: #00ffff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Back Button -->
+  <a href="../index.html#projects" class="back-button">← BACK</a>
+
+  <!-- Project Detail Page -->
+  <div class="project-page">
+    <div class="project-detail-container">
+      <h1 class="project-title">Secure International Payments Portal</h1>
+      <p class="project-subtitle">Full-Stack Payment Processing System</p>
+
+      <div class="project-section">
+        <h3>Overview</h3>
+        <p>
+          Developed a comprehensive secure payment portal designed to handle international transactions
+          with end-to-end encryption. The system implements industry-standard security practices including
+          SSL/TLS encryption, secure authentication protocols, and PCI DSS compliance measures.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <h3>Key Features</h3>
+        <ul>
+          <li>End-to-end encrypted payment processing</li>
+          <li>Multi-currency support with real-time exchange rates</li>
+          <li>Two-factor authentication (2FA) for user accounts</li>
+          <li>Secure session management and token-based authentication</li>
+          <li>Fraud detection and prevention systems</li>
+          <li>Transaction history and reporting dashboard</li>
+          <li>Integration with major payment gateways (Stripe, PayPal)</li>
+          <li>Responsive design for mobile and desktop</li>
+        </ul>
+      </div>
+
+      <div class="project-section">
+        <h3>Technical Implementation</h3>
+        <p>
+          Built with React for the frontend to create a responsive and intuitive user interface,
+          while Node.js and Express power the backend API. PostgreSQL database stores encrypted
+          transaction data, and Redis handles session management for improved performance.
+        </p>
+        <p>
+          Security measures include input sanitization, prepared statements to prevent SQL injection,
+          HTTPS enforcement, CORS configuration, rate limiting, and comprehensive logging for audit trails.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <h3>Challenges & Solutions</h3>
+        <p>
+          The main challenge was ensuring PCI DSS compliance while maintaining a smooth user experience.
+          This was addressed by implementing tokenization for sensitive card data, using third-party
+          payment processors for actual card handling, and conducting regular security audits.
+        </p>
+      </div>
+
+      <div class="tech-tags">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">Express</span>
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">Redis</span>
+        <span class="tech-tag">JWT</span>
+        <span class="tech-tag">Stripe API</span>
+        <span class="tech-tag">SSL/TLS</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../main.js"></script>
+</body>
+</html>

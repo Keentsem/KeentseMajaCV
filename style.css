@@ -941,6 +941,30 @@ html::before {
   .contact-intro {
     font-size: 1.3rem;
   }
+
+  /* Project hotspots responsive layout */
+  .project-hotspots {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .project-hotspot {
+    padding: 1rem 1.5rem;
+  }
+
+  .hotspot-number {
+    font-size: 1.2rem;
+  }
+
+  .hotspot-title {
+    font-size: 1rem;
+  }
+
+  /* Make projects board canvas more visible on mobile */
+  .projects-board-container {
+    min-height: 500px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -968,6 +992,20 @@ html::before {
   .contact-link {
     padding: 1rem;
     font-size: 1.1rem;
+  }
+
+  /* Stack project hotspots on small mobile */
+  .project-hotspots {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .hotspot-number {
+    font-size: 1rem;
+  }
+
+  .hotspot-title {
+    font-size: 0.9rem;
   }
 }
 
