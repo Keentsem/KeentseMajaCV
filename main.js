@@ -97,9 +97,21 @@ function findHeadBone(object) {
   return foundHead;
 }
 
+// Add loading timeout
+const loadingTimeout = setTimeout(() => {
+  console.error('Loading timeout - model took too long to load');
+  const loadingText = loadingScreen.querySelector('p');
+  loadingText.textContent = 'Loading is taking longer than expected. The model may be large. Please wait...';
+  loadingText.style.color = '#ff6b6b';
+}, 15000);
+
+const modelPath = import.meta.env.BASE_URL + 'keentse.glb';
+console.log('Attempting to load model from:', modelPath);
+
 loader.load(
-  import.meta.env.BASE_URL + 'keentse.glb',
+  modelPath,
   (gltf) => {
+    clearTimeout(loadingTimeout);
     model = gltf.scene;
 
     // Center the model
@@ -133,12 +145,21 @@ loader.load(
     console.log('Model loaded successfully!');
   },
   (progress) => {
-    const percent = (progress.loaded / progress.total) * 100;
-    console.log(`Loading: ${percent.toFixed(2)}%`);
+    if (progress.total > 0) {
+      const percent = (progress.loaded / progress.total) * 100;
+      console.log(`Loading: ${percent.toFixed(2)}%`);
+      const loadingText = loadingScreen.querySelector('p');
+      loadingText.textContent = `Loading 3D Model... ${percent.toFixed(0)}%`;
+    }
   },
   (error) => {
+    clearTimeout(loadingTimeout);
     console.error('Error loading model:', error);
-    loadingScreen.querySelector('p').textContent = 'Error loading model. Please check console.';
+    console.error('Model path attempted:', modelPath);
+    console.error('BASE_URL:', import.meta.env.BASE_URL);
+    const loadingText = loadingScreen.querySelector('p');
+    loadingText.textContent = `Error: ${error.message || 'Failed to load 3D model'}`;
+    loadingText.style.color = '#ff4444';
   }
 );
 
