@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Renderer — Mesh Editor | Keentse Maja</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .project-page {
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+      padding: 4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      z-index: 100;
+      padding: 1rem 2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      background: rgba(26, 0, 51, 0.8);
+      border: 2px solid #ff00ff;
+      color: #ff00ff;
+      text-decoration: none;
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: rgba(0, 255, 255, 0.3);
+      border-color: #00ffff;
+      color: #00ffff;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+      transform: translateX(-5px);
+    }
+
+    .project-detail-container {
+      max-width: 700px;
+      width: 100%;
+      margin-right: 0;
+      margin-left: auto;
+      background: linear-gradient(135deg, rgba(51, 0, 102, 0.92) 0%, rgba(26, 0, 51, 0.95) 100%);
+      border: 2px solid #ff00ff;
+      padding: 3rem;
+      clip-path: polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%);
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 1024px) {
+      .project-detail-container {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .project-page {
+        justify-content: center;
+      }
+    }
+
+    .project-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.6rem, 5vw, 3rem);
+      font-weight: 900;
+      color: #00ffff;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .project-subtitle {
+      font-family: 'VT323', monospace;
+      font-size: 1.5rem;
+      color: #ff00ff;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+    }
+
+    .mascot-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .mascot-img {
+      width: 160px;
+      height: auto;
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+      filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.6));
+      animation: mascotFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes mascotFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .project-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .project-section h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1rem;
+      color: #00ffff;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    }
+
+    .project-section p {
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: #00ff88;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+      margin-bottom: 1rem;
+    }
+
+    .project-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .project-section li {
+      font-family: 'VT323', monospace;
+      font-size: 1.3rem;
+      color: #00ff88;
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .project-section li::before {
+      content: '\25B6';
+      position: absolute;
+      left: 0;
+      color: #ff00ff;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .tech-tag {
+      padding: 0.6rem 1.2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      background: rgba(255, 0, 255, 0.2);
+      border: 2px solid #ff00ff;
+      color: #ff00ff;
+      clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+      box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    }
+
+    .tech-tag:hover {
+      background: rgba(0, 255, 255, 0.2);
+      border-color: #00ffff;
+      color: #00ffff;
+    }
+
+    .platform-info {
+      font-family: 'VT323', monospace;
+      font-size: 1.3rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+      margin-top: 1.5rem;
+    }
+
+    .platform-info a {
+      color: #ff00ff;
+      text-decoration: none;
+      text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
+      transition: color 0.3s ease;
+    }
+
+    .platform-info a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Back Button -->
+  <a href="../index.html#projects" class="back-button">&larr; BACK</a>
+
+  <!-- Project Detail Page -->
+  <div class="project-page">
+    <div class="project-detail-container">
+      <h1 class="project-title">3D Renderer &mdash; Mesh Editor</h1>
+      <p class="project-subtitle">C++ &middot; Systems Programming &middot; Computer Graphics</p>
+
+      <!-- Mascot -->
+      <div class="mascot-container">
+        <img
+          src="/images/projects/3D renderer/Robot.png"
+          alt="Robot mascot — pixel-art character from the 3D Renderer app"
+          class="mascot-img"
+          width="160"
+          height="240"
+        >
+      </div>
+
+      <div class="project-section">
+        <h3>Overview</h3>
+        <p>
+          A real-time 3D software renderer and interactive mesh editor built entirely from scratch
+          in C++17 using SDL2. No GPU, no OpenGL &mdash; pure CPU rendering with a custom rasterizer,
+          progressive path tracer, and BVH acceleration structure.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <h3>Key Features</h3>
+        <ul>
+          <li>Render Modes: Wireframe, Flat, Gouraud (Phong), and Path-Traced Raytracing</li>
+          <li>Progressive path tracer with BVH acceleration, Nishita atmospheric sky model,
+              shadow rays, Fresnel glass, and metallic reflections</li>
+          <li>Blender-style mesh editing: vertex/face selection, extrude, subdivide, inset,
+              click-and-drag vertices</li>
+          <li>OBJ import via drag-and-drop</li>
+          <li>Materials: Blinn-Phong BRDF, Lambertian diffuse, Metal, Dielectric (glass)</li>
+          <li>Lighting: 3-point directional lighting, point lights, shadow rays</li>
+          <li>UI: animated splash screen, 4 colour themes (Amber, Cyan, Magenta, Pro),
+              glassmorphism panels with depth effects, pixel-art mascot (Robot.png)</li>
+          <li>Primitives: Cube, Octahedron, Tetrahedron, Ghost mascot</li>
+        </ul>
+      </div>
+
+      <div class="project-section">
+        <h3>Technical Implementation</h3>
+        <p>
+          The renderer implements a full software rasterization pipeline with vertex transformation,
+          clipping, and z-buffering. The path tracer uses a BVH acceleration structure for
+          efficient ray-scene intersection, supporting multiple material types including
+          Blinn-Phong BRDF, Lambertian diffuse, metallic reflections, and dielectric (glass)
+          with Fresnel equations.
+        </p>
+        <p>
+          The Nishita atmospheric sky model provides realistic sky rendering with accurate
+          Rayleigh and Mie scattering. The mesh editor supports Blender-style interaction
+          including vertex and face selection modes, extrusion, subdivision, inset operations,
+          and interactive vertex dragging.
+        </p>
+      </div>
+
+      <div class="tech-tags">
+        <span class="tech-tag">C++17</span>
+        <span class="tech-tag">SDL2</span>
+        <span class="tech-tag">CMake</span>
+        <span class="tech-tag">Path Tracing</span>
+        <span class="tech-tag">BVH</span>
+        <span class="tech-tag">Rasterizer</span>
+        <span class="tech-tag">Nishita Sky</span>
+        <span class="tech-tag">Blinn-Phong</span>
+      </div>
+
+      <p class="platform-info">
+        Platform: Windows | Linux
+        <br>
+        GitHub: <a href="https://github.com/Keentsem" target="_blank" rel="noopener noreferrer">github.com/Keentsem</a>
+      </p>
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

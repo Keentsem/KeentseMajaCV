@@ -540,6 +540,18 @@ html::before {
   text-align: center;
 }
 
+/* Featured project hotspot */
+.project-hotspot--featured {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.25) 0%, rgba(255, 0, 255, 0.3) 100%);
+  border-color: #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.3);
+}
+
+.project-hotspot--featured .hotspot-number {
+  color: #00ffff;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 1);
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

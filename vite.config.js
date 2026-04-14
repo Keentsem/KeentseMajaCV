@@ -9,6 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        'projects/3d-renderer': resolve(__dirname, 'public/projects/3d-renderer.html'),
         'projects/payment-portal': resolve(__dirname, 'public/projects/payment-portal.html'),
         'projects/construction-portal': resolve(__dirname, 'public/projects/construction-portal.html'),
         'projects/azure-retail': resolve(__dirname, 'public/projects/azure-retail.html'),
